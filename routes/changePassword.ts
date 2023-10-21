@@ -11,10 +11,10 @@ const security = require('../lib/insecurity')
 const cache = require('../data/datacache')
 const challenges = cache.challenges
 
-const { User } = require('./user-model'); // Import your user model
-const bcrypt = require('bcrypt'); // Import a bcrypt library for password hashing
+const { User } = require('./user-model'); 
+const bcrypt = require('bcrypt'); 
 
-module.exports = function changePassword() {
+  module.exports = function changePassword() {
   return async (req, res, next) => {
     const { query, headers, user, connection } = req;
     const currentPassword = query.current;
