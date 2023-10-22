@@ -31,15 +31,15 @@ module.exports = function getUserProfile () {
             const code = username?.substring(2, username.length - 1)
             try {
               if (!code) {
-                throw new Error('Username is null')
+                throw new Error('username is null');
               }
-              username = eval(code) // eslint-disable-line no-eval
+              username = processCode(code);
+              if (!username) {
+                throw new Error('username is null');
+              }
             } catch (err) {
-              username = '\\' + username
+              username = '\\' + username;
             }
-          } else {
-            username = '\\' + username
-          }
           const theme = themes[config.get<string>('application.theme')]
           if (username) {
             template = template.replace(/_username_/g, username)
@@ -76,3 +76,7 @@ module.exports = function getUserProfile () {
     return utils.extractFilename(config.get('application.favicon'))
   }
 }
+function processCode(code: string): string | undefined {
+  throw new Error('Function not implemented.')
+}
+
